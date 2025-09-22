@@ -5,7 +5,6 @@ public class Book {
     private String title;
     private String genre;
     private String isbn;
-    private boolean borrowed;
     private Loan loan;
 
 
