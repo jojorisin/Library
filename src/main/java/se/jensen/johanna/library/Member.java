@@ -5,7 +5,7 @@ import java.util.List;
 public class Member {
     private String username;
     private String password;
-    private List borrowedBooks;
+    private List<Book> borrowedBooks;
     private int loanDate;
 
     public Member(String username, String password, List borrowedBooks, int loanDate) {
@@ -15,19 +15,35 @@ public class Member {
         this.loanDate = loanDate;
     }
 
-    public List getBorrowedBooks() {
-        return borrowedBooks;
-    }
-
-    public int getLoanDate() {
-        return loanDate;
+    public String getUsername() {
+        return username;
     }
 
     public void setUsername(String username) {
         this.username = username;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public List<Book> getBorrowedBooks() {
+        return borrowedBooks;
+    }
+
+    public void setBorrowedBooks(List<Book> borrowedBooks) {
+        this.borrowedBooks = borrowedBooks;
+    }
+
+    public int getLoanDate() {
+        return loanDate;
+    }
+
+    public void setLoanDate(int loanDate) {
+        this.loanDate = loanDate;
     }
 }
