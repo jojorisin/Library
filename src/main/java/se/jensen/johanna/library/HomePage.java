@@ -3,17 +3,19 @@ package se.jensen.johanna.library;
 import java.util.Scanner;
 
 public class HomePage {
-    private Database db;
+    //private Database db;
     Scanner scanner = new Scanner(System.in);
-    Book myBooks = new Book();
+    //Book myBooks = new Book();
     //Loan myBorrowedBooks = new Loan();
     private User currentUser;
     private Loan loan;
+    private Library library;
 
-    public HomePage(User currentUser, Database db) {
+    public HomePage(User currentUser, Library library) {
         this.currentUser = currentUser;
-        this.db = db;
-        this.loan = new Loan(currentUser);
+        //this.db = db;
+        //this.loan = new Loan(currentUser);
+        this.library = library;
     }
 
     public void displayMenu() {
@@ -29,15 +31,18 @@ public class HomePage {
 
             switch (choice) {
                 case "1":
-                    db.getBooks();
+                    library.showLibraryBooks();
                     break;
 
                 case "2":
-                    db.getBooks();
+                    library.showLibraryBooks();
                     System.out.println("Skriv titeln på boken du vill låna");
-                    String bookToBorrow = scanner.nextLine();
-                    Book getLoan = db.getBooksByTitle(bookToBorrow);
-                    loan.takeALoan(getLoan, currentUser);
+                    Book bookToLoan = library.getBookByTitle(scanner.nextLine());
+                    //String bookOfChoice = scanner.nextLine();
+                    //här ska vi skapa loanService som sköter databas för lån
+                    // Book bookToLoan = library.getBookByTitle(bookOfChoice);
+                    this.loan = new Loan(bookToLoan, currentUser);
+                    currentUser.addBookToLoan(loan);
                     System.out.println("Du har lånat " + currentUser.getBorrowedBooks());
 
 

@@ -1,4 +1,4 @@
-package se.jensen.johanna.library;
+/*package se.jensen.johanna.library;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,11 +6,19 @@ import java.util.List;
 public class Database {
     private List<User> users;
     private List<Book> books;
+    private List<Book> borrowedBooks;
+    private BookRepository bookRepository;
 
     public Database() {
         this.users = new ArrayList<>();
         this.books = new ArrayList<>();
+        this.borrowedBooks = new ArrayList<>();
+        this.bookRepository = new BookRepository();
 
+    }
+
+    public BookRepository getBooks() {
+        return bookRepository;
     }
 
     public void addUser(User user) {
@@ -23,7 +31,7 @@ public class Database {
 
     public User getUserByUserName(String userName) {
         for (User user : users) {
-            if (user.getUsername().equals(userName)) {
+            if (user.getUsername().equalsIgnoreCase(userName)) {
                 return user;
             }
             System.out.println("Finns ingen användare med det namnet.");
@@ -35,7 +43,7 @@ public class Database {
         books.add(book);
     }
 
-    public void getBooks() {
+    public void printAllBooks() {
         for (Book book : books) {
             System.out.println(book + "\n");
         }
@@ -44,7 +52,7 @@ public class Database {
 
     public Book getBooksByTitle(String title) {
         for (Book book : books) {
-            if (book.getTitle().equals(title)) {
+            if (book.getTitle().equalsIgnoreCase(title)) {
                 return book;
             }
         }
@@ -54,6 +62,17 @@ public class Database {
 
     }
 
+    public void addBorrowedBook(Book book) {
+        borrowedBooks.add(book);
+
+    }
+
+    public void printAllBorrowedBooks() {
+        for (Book book : borrowedBooks) {
+            System.out.println(book + "\n");
+        }
+    }
+
 
 }
-
+*/
