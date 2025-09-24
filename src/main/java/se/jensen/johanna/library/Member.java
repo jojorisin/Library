@@ -8,13 +8,19 @@ public class Member {
     private List<Book> borrowedBooks;
 
 
+
     public Member(String username, String password) {
         this.username = username;
         this.password = password;
     }
 
+
     public List<Book> getBorrowedBooks() {
         return borrowedBooks;
+    }
+
+    public String getUsername() {
+        return username;
     }
 
 
@@ -22,7 +28,19 @@ public class Member {
         this.username = username;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public List<Book> getBorrowedBooks() {
+        return borrowedBooks;
+    }
+
+  
+
+  
 }
