@@ -6,18 +6,23 @@ public class Member {
     private String username;
     private String password;
     private List<Book> borrowedBooks;
-    private int loanDate;
 
-    public Member(String username, String password, List borrowedBooks, int loanDate) {
+
+
+    public Member(String username, String password) {
         this.username = username;
         this.password = password;
-        this.borrowedBooks = borrowedBooks;
-        this.loanDate = loanDate;
+    }
+
+
+    public List<Book> getBorrowedBooks() {
+        return borrowedBooks;
     }
 
     public String getUsername() {
         return username;
     }
+
 
     public void setUsername(String username) {
         this.username = username;
@@ -35,15 +40,7 @@ public class Member {
         return borrowedBooks;
     }
 
-    public void setBorrowedBooks(List<Book> borrowedBooks) {
-        this.borrowedBooks = borrowedBooks;
-    }
+  
 
-    public int getLoanDate() {
-        return loanDate;
-    }
-
-    public void setLoanDate(int loanDate) {
-        this.loanDate = loanDate;
-    }
+  
 }
