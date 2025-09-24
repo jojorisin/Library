@@ -5,23 +5,18 @@ import java.util.List;
 public class Member {
     private String username;
     private String password;
-    private List borrowedBooks;
-    private int loanDate;
+    private List<Book> borrowedBooks;
 
-    public Member(String username, String password, List borrowedBooks, int loanDate) {
+
+    public Member(String username, String password) {
         this.username = username;
         this.password = password;
-        this.borrowedBooks = borrowedBooks;
-        this.loanDate = loanDate;
     }
 
-    public List getBorrowedBooks() {
+    public List<Book> getBorrowedBooks() {
         return borrowedBooks;
     }
 
-    public int getLoanDate() {
-        return loanDate;
-    }
 
     public void setUsername(String username) {
         this.username = username;
