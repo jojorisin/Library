@@ -9,21 +9,18 @@ public class Book {
     private String title;
     private String genre;
     private String isbn;
-    private Loan loanStatus;
     private boolean isLoaned = false;
     private List<Book> allBooks = new ArrayList<>();
 
     public Book() {
     }
 
-    ;
 
     public Book(String title, Author author, String isbn, String genre) {
         this.title = title;
         this.genre = genre;
         this.isbn = isbn;
         this.author = author;
-        this.loanStatus = new Loan(); //loan måste ha en default som är available.
 
 
     }
@@ -51,9 +48,6 @@ public class Book {
         return isbn;
     }
 
-    public Loan getLoanStatus() {
-        return loanStatus;
-    }
 
     public void setAuthor(Author author) {
         this.author = author;
@@ -75,15 +69,15 @@ public class Book {
         this.loanStatus = loanStatus;
     }
 
-    public void addNewBook(Book book) {
-
-        allBooks.add(book);
+    public boolean getIsLoaned(Book book) {
+        return isLoaned;
     }
 
-    public void getAllBooks() {
+
+   /* public void getAllBooks() {
         for (Book book : allBooks) {
             System.out.println(book + " \n");
         }
-    }
+    }*/
 
 }
