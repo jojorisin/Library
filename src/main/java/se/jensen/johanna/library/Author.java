@@ -6,11 +6,12 @@ import java.util.List;
 public class Author {
     private String firstName;
     private String lastName;
-    private List<Book> booksByAuthor = new ArrayList<>();
+    private List<Book> booksByAuthor;
 
     public Author(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
+        booksByAuthor = new ArrayList<>();
 
 
     }
@@ -41,8 +42,13 @@ public class Author {
         return booksByAuthor;
     }
 
-    public void addBookByAuthor(Book book) {
+    public void printBooksByAuthor() {
+        for (Book book : booksByAuthor) {
+            System.out.println(book.getTitle());
+        }
+    }
 
+    public void addBookByAuthor(Book book) {
         booksByAuthor.add(book);
     }
 }

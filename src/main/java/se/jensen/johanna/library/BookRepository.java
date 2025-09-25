@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BookRepository {
-    private List<Book> books;
+    private final List<Book> books;
 
     public BookRepository() {
         this.books = new ArrayList<>();
@@ -31,9 +31,13 @@ public class BookRepository {
                 return book;
             }
         }
-        System.out.println("Finns ingen bok med det namnet");
+        System.out.println("Cant Find Book With That Title");
         return null;
 
 
+    }
+
+    public List<Book> getAllBooks() {
+        return books;
     }
 }

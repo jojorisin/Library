@@ -6,7 +6,7 @@ import java.util.List;
 public class User {
     private String username;
     private String password;
-    private List<Loan> borrowedBooks;
+    private final List<Loan> borrowedBooks;
     private boolean loggedIn = false;
 
 
@@ -21,9 +21,19 @@ public class User {
         return "Username: " + username;
     }
 
-    public void addBookToLoan(Loan loanedBook) {
-        borrowedBooks.add(loanedBook);
+    public void addToLoan(Loan loan) {
+        borrowedBooks.add(loan);
     }
+
+    public Loan getLoan(String bookTitle) {
+        for (Loan loan : borrowedBooks) {
+            if (loan.getLoanedBook().getTitle().equalsIgnoreCase(bookTitle)) {
+                return loan;
+            }
+        }
+        return null;
+    }
+    
 
     public List<Loan> getBorrowedBooks() {
         return borrowedBooks;

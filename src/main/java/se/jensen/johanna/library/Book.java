@@ -12,9 +12,6 @@ public class Book {
     private boolean isLoaned = false;
     private List<Book> allBooks = new ArrayList<>();
 
-    public Book() {
-    }
-
 
     public Book(String title, Author author, String isbn, String genre) {
         this.title = title;
@@ -28,9 +25,7 @@ public class Book {
     @Override
     public String toString() {
         return " " + title +
-                ", Författare: " + author +
-                ", Genre: " + genre +
-                ", ISBN: " + isbn;
+                ", Author: " + author;
     }
 
     public Author getAuthor() {
@@ -70,15 +65,9 @@ public class Book {
         this.loanStatus = loanStatus;
     }
 
-    public boolean getIsLoaned(Book book) {
+    public boolean getIsLoaned() {
         return isLoaned;
     }
 
-
-   /* public void getAllBooks() {
-        for (Book book : allBooks) {
-            System.out.println(book + " \n");
-        }
-    }*/
 
 }

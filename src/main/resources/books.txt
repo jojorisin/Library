@@ -1,0 +1,30 @@
+Pippi Långstrump;Astrid Lindgren;2345;Barnbok
+Bim Am;Harry Beam;57483;Science Fiction
+Biography of George;Leo Äppel;65748;Skräck
+Charlestown;Sam Charles;65467;Science Fiction
+Sam Bam;Bam Margera;67549;Biografi
+Mysterious Island;Jules Verne;10001;Äventyr
+Harry Potter and the Philosopher's Stone;J.K. Rowling;10002;Fantasy
+Harry Potter and the Chamber of Secrets;J.K. Rowling;10003;Fantasy
+The Hobbit;J.R.R. Tolkien;10004;Fantasy
+The Lord of the Rings;J.R.R. Tolkien;10005;Fantasy
+The Catcher in the Rye;J.D. Salinger;10006;Roman
+To Kill a Mockingbird;Harper Lee;10007;Roman
+1984;George Orwell;10008;Dystopi
+Animal Farm;George Orwell;10009;Satir
+Brave New World;Aldous Huxley;10010;Dystopi
+The Great Gatsby;F. Scott Fitzgerald;10011;Roman
+Moby Dick;Herman Melville;10012;Äventyr
+The Odyssey;Homer Larsen;10013;Epik
+War and Peace;Leo Tolstoy;10014;Roman
+Crime and Punishment;Fyodor Dostoevsky;10015;Roman
+The Brothers Karamazov;Fyodor Dostoevsky;10016;Roman
+Don Quixote;Miguel de Cervantes;10017;Roman
+Les Misérables;Victor Hugo;10018;Roman
+The Count of Monte Cristo;Alexandre Dumas;10019;Äventyr
+Dracula;Bram Stoker;10020;Skräck
+Frankenstein;Mary Shelley;10021;Skräck
+The Picture of Dorian Gray;Oscar Wilde;10022;Roman
+The Adventures of Sherlock Holmes;Arthur Conan Doyle;10023;Mysterium
+A Tale of Two Cities;Charles Dickens;10024;Roman
+Great Expectations;Charles Dickens;10025;Roman
