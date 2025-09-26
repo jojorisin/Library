@@ -6,7 +6,7 @@ import java.util.List;
 public class Author {
     private String firstName;
     private String lastName;
-    private List<Book> booksByAuthor;
+    private final List<Book> booksByAuthor;
 
     public Author(String firstName, String lastName) {
         this.firstName = firstName;

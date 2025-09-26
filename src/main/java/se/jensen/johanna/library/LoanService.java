@@ -1,26 +1,32 @@
 package se.jensen.johanna.library;
 
 public class LoanService {
-    private User currentUser;
-    private Loan loan;
 
 
-    public Loan takeALoan(User user, Book book) {
-        if (!book.getIsLoaned()) {
-            this.loan = new Loan(book, user);
-            user.addToLoan(loan);
-            book.setLoaned(true);
-            return loan;
+    public void takeALoan(User user, Book book) {
+        if (book == null) {
+            throw new IllegalArgumentException("Book does not exist in loans.");
         }
-        System.out.println("Book is not available");
-        return null;
+        if (book.getIsLoaned()) {
+            throw new IllegalStateException("Book is not available.");
+        }
+        Loan loan = new Loan(book, user);
+        user.addToLoan(loan);
+        book.setLoaned(true);
+        return;
 
     }
 
-    public void returnLoan(Loan loan) {
+
+    public boolean returnLoan(Loan loan) {
+        if (loan == null) {
+            throw new IllegalArgumentException("Loan not found.");
+        }
         User user = loan.getUser();
         loan.getLoanedBook().setLoaned(false);
+        System.out.println("Returned At: " + loan.getReturnDate());
         user.getBorrowedBooks().remove(loan);
+        return true;
     }
 }
 

@@ -1,10 +1,7 @@
 package se.jensen.johanna.library;
 
 public class Login {
-    //private Database db;
-    private UserRepository userRepo;
-    boolean loggedIn = false;
-    private User user;
+    private final UserRepository userRepo;
 
 
     public Login(UserRepository userRepo) {

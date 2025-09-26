@@ -3,23 +3,19 @@ package se.jensen.johanna.library;
 import java.util.Scanner;
 
 public class LoginService {
-    //private Database db;
-    private UserRepository userRepo;
-    private static Scanner sc = new Scanner(System.in);
-    private Login login;
-    private User user;
+    private final Scanner sc;
+    private final Login login;
 
-    public LoginService(UserRepository userRepo) {
-        // this.db = db;
-        this.userRepo = userRepo;
+
+    public LoginService(UserRepository userRepo, Scanner sc) {
         this.login = new Login(userRepo);
+        this.sc = sc;
 
     }
 
     public User logInUser() {
 
         while (true) {
-            System.out.println("Welcome To The Library");
             System.out.println("Enter UserName: ");
             String userName = sc.nextLine();
             System.out.println("Enter Password: ");
@@ -28,12 +24,9 @@ public class LoginService {
 
             if (loggedInUser != null) {
                 System.out.println("Login Was Successful \n");
-                //HomePage homePage = new HomePage(loggedInUser);
-                //homePage.displayMenu();
                 return loggedInUser;
-                //break;
             } else {
-                System.out.println("Fel användarnamn eller lösenord");
+                System.out.println("Wrong Username Or Password");
             }
 
         }

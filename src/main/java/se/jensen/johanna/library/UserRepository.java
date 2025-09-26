@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserRepository {
-    private List<User> users;
+    private final List<User> users;
 
     public UserRepository() {
         this.users = new ArrayList<>();
@@ -28,8 +28,9 @@ public class UserRepository {
             if (user.getUsername().equalsIgnoreCase(userName)) {
                 return user;
             }
-            System.out.println("Finns ingen användare med det namnet.");
+
         }
+        System.out.println("Cant Find User.");
         return null;
     }
 

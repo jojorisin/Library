@@ -16,9 +16,28 @@ public class AddToDatabase {
         this.authorRepository = authorRepository;
     }
 
+    public void addUserFromFile() {
+        try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream("users.txt");
+             BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] splitNameAndPw = line.split(";");
+                String userName = splitNameAndPw[0];
+                String pw = splitNameAndPw[1];
+                User user = new User(userName, pw);
+                User userToAdd = checkForDoubles(user);
+                userRepository.addUser(userToAdd);
+
+
+            }
+        } catch (NullPointerException | IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
     public void addAuthorAndBooksFromFile() {
-        InputStream inputStream = getClass().getClassLoader().getResourceAsStream("books.txt");
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
+        try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream("books.txt");
+             BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split(";");
@@ -36,7 +55,6 @@ public class AddToDatabase {
 
                 }
 
-                //check double innan
                 Author newAuthor = new Author(firstName, lastName);
                 Author authorToAdd = checkForDoubles(newAuthor);
                 String isbn = parts[2];
@@ -52,8 +70,8 @@ public class AddToDatabase {
 
 
             }
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (NullPointerException | IOException e) {
+            System.out.println(e.getMessage());
         }
 
     }
@@ -66,6 +84,15 @@ public class AddToDatabase {
             }
         }
         return author;
+    }
+
+    private User checkForDoubles(User user) {
+        for (User existing : userRepository.getAllUsers()) {
+            if (existing.getUsername().equalsIgnoreCase(user.getUsername())) {
+                return existing;
+            }
+        }
+        return user;
     }
 
 

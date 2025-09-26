@@ -1,21 +1,18 @@
 package se.jensen.johanna.library;
 
-import java.util.List;
 import java.util.Scanner;
 
 public class HomePage {
-    Scanner scanner = new Scanner(System.in);
+    Scanner sc;
     private final User currentUser;
-    private Loan loan;
     private final Library library;
     private final LoanService loanService;
 
-    public HomePage(User currentUser, Library library) {
+    public HomePage(User currentUser, Library library, Scanner sc) {
         this.currentUser = currentUser;
-        //this.db = db;
-        //this.loan = new Loan(currentUser);
         this.library = library;
         this.loanService = new LoanService();
+        this.sc = sc;
     }
 
     public void displayMenu() {
@@ -29,19 +26,25 @@ public class HomePage {
                     + "4. Return A Book" + "\n"
                     + " 5. See Your Borrowed Books " + "\n"
                     + "6. Log out.");
-            String choice = scanner.nextLine();
+            String choice = sc.nextLine();
 
             switch (choice) {
                 case "1":
                     library.showLibraryBooks();
+                    displayMenu();
                     break;
 
                 case "2":
                     System.out.println("Please enter name of writer");
-                    String writerToSearch = scanner.nextLine();
+                    String nameToSearch = sc.nextLine();
                     try {
-                        Author authorToSearch = library.getAuthorByName(writerToSearch);
+                        Author authorToSearch = library.getAuthorByName(nameToSearch);
                         authorToSearch.printBooksByAuthor();
+                        System.out.println("Do You Want To Make A Loan?");
+                        if (sc.nextLine().equalsIgnoreCase("yes")) {
+                            handleLoans();
+                        }
+
                     } catch (NullPointerException e) {
                         e.getMessage();
                     }
@@ -51,46 +54,30 @@ public class HomePage {
 
                 case "3":
                     library.showLibraryBooks();
-                    System.out.println("Enter Title Of Book You Want To Borrow:");
-                    Book bookToLoan = library.getBookByTitle(scanner.nextLine());
-                    loanService.takeALoan(currentUser, bookToLoan);
-                    System.out.println("You Have Borrowed: " + bookToLoan);
-                    displayMenu();
+                    handleLoans();
                     break;
 
 
                 case "4":
-
-                    List<Loan> loans = currentUser.getBorrowedBooks();
-                    for (Loan userLoans : loans) {
-                        System.out.println(userLoans);
-                    }
-                    System.out.println("Which book do you wish to return?");
-                    String loanToReturn = scanner.nextLine();
-                    loanService.returnLoan(currentUser.getLoan(loanToReturn));
+                    System.out.println("Active Loans: ");
                     currentUser.showLoanedBooks();
-                    displayMenu();
+                    handleReturnBook();
                     break;
 
                 case "5":
                     currentUser.showLoanedBooks();
                     System.out.println("Do You Want To Return A Book?");
-                    String answer = scanner.nextLine();
-                    if (answer.equals("yes")) {
-                        System.out.println("Which book do you wish to return?");
-                        String loanToReturn2 = scanner.nextLine();
-                        loanService.returnLoan(currentUser.getLoan(loanToReturn2));
+                    if (sc.nextLine().equalsIgnoreCase("yes")) {
+                        handleReturnBook();
                         currentUser.showLoanedBooks();
-                        displayMenu();
-                        break;
 
-                    } else {
-                        break;
                     }
+                    break;
 
                 case "6":
+                    System.out.println("Thank you For Visiting Library.");
                     displayMenu = false;
-                    break;
+                    return;
 
             }
 
@@ -98,5 +85,35 @@ public class HomePage {
 
     }
 
+    private void handleReturnBook() {
+        System.out.println(" Which book do you wish to return?");
+        String loanToReturn = sc.nextLine();
+        Loan loan = currentUser.getLoan(loanToReturn);
+        try {
+            if (loanService.returnLoan(loan)) {
+                System.out.println("Return Was Successful");
+            }
+
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+
+        }
+
+
+    }
+
+    private void handleLoans() {
+        System.out.println("Enter Title Of Book You Want To Borrow:");
+        String bookToLoan = sc.nextLine();
+        Book book = library.getBookByTitle(bookToLoan);
+        try {
+            loanService.takeALoan(currentUser, book);
+            System.out.println("You Have Borrowed: " + bookToLoan);
+
+        } catch (IllegalStateException e) {
+            System.out.println(e.getMessage());
+        }
+
+    }
 
 }
