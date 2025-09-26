@@ -76,7 +76,6 @@ public class HomePage {
 
                 case "6":
                     System.out.println("Thank you For Visiting Library.");
-                    displayMenu = false;
                     return;
 
             }

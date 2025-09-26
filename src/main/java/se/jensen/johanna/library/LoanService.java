@@ -13,7 +13,6 @@ public class LoanService {
         Loan loan = new Loan(book, user);
         user.addToLoan(loan);
         book.setLoaned(true);
-        return;
 
     }
 
